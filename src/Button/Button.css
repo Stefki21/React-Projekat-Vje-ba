@@ -6,6 +6,11 @@ button {
     border-style: none;
 }
 
+button:hover {
+    cursor: pointer;
+    background-color:  rgb(96, 57, 119);
+}
+
 p {
     margin: 0;
     font-size: 1rem;

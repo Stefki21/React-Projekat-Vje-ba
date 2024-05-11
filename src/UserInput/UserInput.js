@@ -6,7 +6,7 @@ import React, {useState} from 'react';
 
 function UserInput (props) {
     console.log(props.setData)
-    const[currentUser, setCurrentUser] = useState({username: '', userage: null})
+    const[currentUser, setCurrentUser] = useState({username: '', userage: ''})
 
     function inputChangeHandler(input, value) {
         setCurrentUser((prevInput) => {
@@ -22,18 +22,17 @@ function UserInput (props) {
 
 function submitHandler(event) {
     event.preventDefault();
-    if(currentUser.username && currentUser.userage>0) {
+    if(currentUser.username && +currentUser.userage>0) {
         props.setData((prevData) => [
             ...prevData,
             currentUser
         ]
     );
+    setCurrentUser({username: '', userage: ''});
     }else if(!currentUser.username || !currentUser.userage) {
-        props.errorCheck('empty input');
-        props.okayed(false);
+        props.error('Please enter a valid name and age (non-empty values).');
     }else {
-        props.errorCheck('negative number');
-        props.okayed(false);
+        props.error('Please enter a valid age (> 0).');
     }
 }
 
@@ -42,10 +41,10 @@ function submitHandler(event) {
         <Card>
             <form onSubmit={submitHandler}>
                 <label htmlFor='username'><b>Username</b></label>
-                <input type='text' id='username' name='username' onChange={(event) => inputChangeHandler(event.target.id, event.target.value)} />
+                <input type='text' id='username' name='username' value={currentUser.username} onChange={(event) => inputChangeHandler(event.target.id, event.target.value)} />
                 <label htmlFor='userage'><b>Age(Years)</b></label>
-                <input type='number' id='userage' name='userage' onChange={(event) => inputChangeHandler(event.target.id, event.target.value)} />
-                <Button />
+                <input type='number' id='userage' name='userage' value={currentUser.userage} onChange={(event) => inputChangeHandler(event.target.id, event.target.value)} />
+                <Button><p>Add User</p></Button>
             </form>
         </Card>
     )

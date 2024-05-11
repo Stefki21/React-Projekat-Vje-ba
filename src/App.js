@@ -7,16 +7,13 @@ import ErrorWindow from './ErrorWindow/ErrorWindow';
 function App() {
   const [userData, setUserData] = useState([]);
 
-  const [errorCheck, setErrorCheck] = useState('');
+  const [error, setError] = useState('');
 
-  const [okayed, setOkayed] = useState(false);
-  
   return (
     <div>
-      <UserInput setData={setUserData} errorCheck={setErrorCheck} okayed={setOkayed} ></UserInput>
+      <UserInput setData={setUserData} error={setError}></UserInput>
       {userData.length !== 0 && <Table data={userData}></Table>}
-      {(errorCheck === 'empty input' && okayed === false) && <ErrorWindow msg={'Please enter a valid name and age (non-empty values).' } okayed={setOkayed}></ErrorWindow>}
-      {(errorCheck === 'negative number' && okayed === false) && <ErrorWindow msg={'Please enter a valid age (> 0).'} okayed={setOkayed}></ErrorWindow>}
+      {error && <ErrorWindow msg={error} onOkay={setError}></ErrorWindow>}
     </div>
   );
 }

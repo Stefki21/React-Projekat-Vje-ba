@@ -1,9 +1,6 @@
 .window {
-    width: 50%;
-    border-radius: 8px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.219);
-    background-color: rgb(235, 221, 221);
     margin: 0 auto;
+    padding: 0;
     position: fixed;
     top: 15rem;
     left: 10rem;
@@ -19,7 +16,7 @@
 }
 
 .message {
-    margin: 2rem 0.75rem;
+    margin: 2.5rem 0.75rem;
 }
 
 .okayButton {
